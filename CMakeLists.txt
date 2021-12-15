@@ -1,0 +1,29 @@
+
+#set(CMAKE_STSTEM_NAME Windows)
+#set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-c++)
+
+
+
+cmake_minimum_required(VERSION 3.22)
+project(TiPy)
+
+set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_MODULE_PATH /home/headass/CMake_Modules/)
+find_package(Python3 COMPONENTS Interpreter Development)
+find_package(SDL2 REQUIRED)
+find_package(SDL2TTF REQUIRED)
+include_directories(include)
+include_directories(${Python3_INCLUDE_DIRS})
+include_directories(${SDL2_INCLUDE_DIRS})
+include_directories(${SDL2TTF_INCLUDE_DIRS})
+
+file(GLOB SRC
+     "src/*.cpp"
+     "include/*.hpp"
+)
+
+
+add_executable(TiPy ${SRC})
+
+target_link_libraries(TiPy SDL2_ttf ${SDL2_LIBRARIES} ${Python3_LIBRARIES})
