@@ -126,28 +126,27 @@ static int pltcount = 0;
 static PyObject*
 plot(PyObject *self, PyObject *args)
 {
-    pltcount++;
-    std::cout << "plot count: ";
-    std::cout << pltcount << std::endl;
     PyObject* x;
     PyObject* y;
     const char* style;
     auto a = PyArg_ParseTuple(args,"OOs", &x,&y,&style);
-    
     if(a == 1){
         if(strcmp(x->ob_type->tp_name, "list") == 0 && strcmp(y->ob_type->tp_name, "list") == 0){
-            int listsize = (int)PyList_GET_SIZE(x);
+            int listsize = PyList_GET_SIZE(x);
             for(int i = 0; i < listsize; i++){
-                int xx = (int)PyLong_AsLong(PyList_GetItem(x, i));
-                int yy = (int)PyLong_AsLong(PyList_GetItem(y, i));
+                float xx = PyLong_AsLong(PyList_GetItem(x, i));
+                float yy = PyLong_AsLong(PyList_GetItem(y, i));
                 SDL::Dot(map_window(xx, true), map_window(yy, false), style);
             }
         }
         else{
-            int xx = (int)PyLong_AsLong(x);
-            int yy = (int)PyLong_AsLong(y);
+            
+            float xx = PyFloat_AsDouble(x);
+            float yy = PyFloat_AsDouble(y);
             SDL::Dot(map_window(xx, true), map_window(yy, false), style);
         }
+        //PyObject_Free(x);
+        //PyObject_Free(y);
     }
     //SDL_RenderPresent(Globals::renderer);
     return PyLong_FromLong(2);

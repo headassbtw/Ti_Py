@@ -25,8 +25,8 @@ SDL_Window* Globals::window;
 SDL_Renderer* Globals::renderer;
 SDL_Renderer* Globals::post_renderer;
 int Globals::screen_size_mod = 1;
-int Globals::screen_width = 320;
-int Globals::screen_height = 210;
+int Globals::screen_width = 640;
+int Globals::screen_height = 420;
 float Globals::xmin = -10;
 float Globals::xmax = 10;
 float Globals::ymin = -6.56;
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]){
 
 
     //SDL_CreateWindowAndRenderer(320, 210, SDL_WINDOW_VULKAN, &window, &renderer);
-    SDL_CreateWindowAndRenderer((Globals::screen_width * Globals::screen_size_mod), (Globals::screen_height * Globals::screen_size_mod), SDL_WINDOW_SHOWN, &Globals::window, &Globals::renderer);
+    SDL_CreateWindowAndRenderer((Globals::screen_width * Globals::screen_size_mod), (Globals::screen_height * Globals::screen_size_mod), SDL_WINDOW_VULKAN, &Globals::window, &Globals::renderer);
     std::string pyname = argv[1];
     std::cout << "Running file ";
     std::cout << pyname << std::endl;

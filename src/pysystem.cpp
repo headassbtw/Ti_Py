@@ -26,7 +26,8 @@ dispwait(PyObject *self, PyObject *args)
                 if((event.key.type == 771) || event.type == SDL_QUIT) finished = SDL_TRUE;
             }
             SDL_Delay(10);
-            //SDL::Present(); //this keeps the screen alive, very finnicky otherwise
+            //can't call the wrapper func becaue that renders text and i value your SSD's life
+            SDL_RenderPresent(Globals::renderer); //this keeps the screen alive, very finnicky otherwise
         }
     }
     return PyLong_FromLong(2);

@@ -22,6 +22,8 @@ include_directories(${SDL2TTF_INCLUDE_DIRS})
 
 file(GLOB SRC
      "src/*.cpp"
+     "src/tool/*.cpp"
+     "src/frontend/*.cpp"
      "include/*.hpp"
 )
 

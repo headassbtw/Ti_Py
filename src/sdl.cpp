@@ -19,6 +19,7 @@ void SDL::Present(const char* message){
     SDL_SetRenderDrawColor(Globals::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
     Text::Draw(0, Globals::screen_height+10, message, "center");
     SDL_RenderPresent(Globals::renderer);
+    std::cout << "presented with status bar" << std::endl;
 }
 
 
@@ -27,15 +28,15 @@ void SDL::Clear(){
     SDL_RenderClear(Globals::renderer);
     //SDL_RenderPresent(Globals::renderer);
 }
-void SDL::Dot(int x, int y, const char* mark){
+void SDL::Dot(float x, float y, const char* mark){
     int r = Globals::screen_size_mod;
-
+    
     if(strcmp(mark, "o") == 0){ //circle
         for(int i = 0; i < 4; i++){         //do not question this
             for(int j = 0; j < 360; j++){   //i know it's absolutely horrible
-                float tx = cos(j)*i;        //cry more
-                float ty = sin(j)*i;
-                SDL_RenderDrawPointF(Globals::renderer, tx+x, ty+y);
+                int tx = cos(j)*i;        //cry more
+                int ty = sin(j)*i;
+                SDL_RenderDrawPoint(Globals::renderer, tx+x, ty+y);
             }
         }
     }
@@ -58,4 +59,5 @@ void SDL::Dot(int x, int y, const char* mark){
             }
         }
     }
+    
 }
