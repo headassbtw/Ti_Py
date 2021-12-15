@@ -8,7 +8,7 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
 
 # Functions
 
-* ti_plotlib
+## ti_plotlib
 [x] cls()
 [x] grid(xscl,yscl,"style")
 [ ] window(xmin,xmax,ymin,ymax)
@@ -26,7 +26,7 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
 [ ] pen("size","style")
 [ ] text_at(row,"text","align")
 
-* ti_system
+## ti_system
 [ ] var=recall_list("name")
 [ ] store_list("name",var)
 [ ] var=recall_RegEQ()
