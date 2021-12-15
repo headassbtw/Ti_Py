@@ -1,0 +1,5 @@
+#build stuff
+/build
+
+#just in case
+*.o

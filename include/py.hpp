@@ -1,0 +1,1 @@
+void Import(const char* filename);
