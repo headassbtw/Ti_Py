@@ -1,0 +1,17 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-I/home/headass/CLionProjects/TiPy/include",
+      "-I/usr/include/python3.10",
+      "-I/usr/include/SDL2",
+      "-c",
+      "-o",
+      "CMakeFiles/TiPy.dir/src/main.cpp.o",
+      "/home/headass/CLionProjects/TiPy/src/main.cpp"
+    ],
+    "directory": "/home/headass/CLionProjects/TiPy/build",
+    "file": "/home/headass/CLionProjects/TiPy/src/main.cpp",
+    "output": "/home/headass/CLionProjects/TiPy/build/CMakeFiles/TiPy.dir/src/main.cpp.o"
+  }
+]

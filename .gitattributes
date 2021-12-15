@@ -1,2 +1,5 @@
 #fuckin cmake files
 CMake_Modules/** linguist-vendored
+
+#vscode stuff because idk?
+compile_commands.json linguist-generated
