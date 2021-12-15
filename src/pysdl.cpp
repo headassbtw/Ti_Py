@@ -63,6 +63,26 @@ grid(PyObject *self, PyObject *args)
     return PyLong_FromLong(2);
 }
 
+static PyObject*
+window(PyObject *self, PyObject *args)
+{
+    int xmin;
+    int ymin;
+    int xmax;
+    int ymax;
+    const char* style;
+
+    auto a = PyArg_ParseTuple(args,"IIII", &xmin,&ymin,&xmax,&ymax);
+    if(a == 1){
+        Globals::xmin = xmin;
+        Globals::xmax = xmax;
+        Globals::ymin = ymin;
+        Globals::ymax = ymax;
+    }
+        
+    return PyLong_FromLong(2);
+}
+
 
 
 static PyObject*
@@ -139,6 +159,8 @@ static PyMethodDef SdlMethods[] = {
      "Clears the screen"},
      {"grid", grid, METH_VARARGS,
      "Draws a grid"},
+     {"window", window, METH_VARARGS,
+     "Sets the window size [BETA]"},
     {NULL, NULL, 1, NULL}
 };
 

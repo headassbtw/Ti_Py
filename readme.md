@@ -14,7 +14,7 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
     - [x] xscl
     - [x] yscl
     - [ ] "style"
- - [ ] window(xmin,xmax,ymin,ymax)
+ - [x] window(xmin,xmax,ymin,ymax)
  - [ ] auto_window(xlist,ylist)
  - [ ] axes("mode")
  - [ ] labels("xlabel","ylabel",x,y)
