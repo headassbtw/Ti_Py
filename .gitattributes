@@ -1,2 +1,2 @@
 #fuckin cmake files
-*.cmake linguist-vendored
+CMake_Modules/** linguist-vendored

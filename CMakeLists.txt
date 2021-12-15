@@ -9,7 +9,9 @@ project(TiPy)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_MODULE_PATH /home/headass/CMake_Modules/)
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake_Modules/")
+#INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/CMake_Modules/FindSDL2TTF.cmake")
+
 find_package(Python3 COMPONENTS Interpreter Development)
 find_package(SDL2 REQUIRED)
 find_package(SDL2TTF REQUIRED)
