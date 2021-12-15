@@ -4,8 +4,10 @@
 #include <pysystem.hpp>
 #include <main.hpp>
 #include <SDL2/SDL.h>
+#include <sdl.hpp>
 #include <string>
 #include <tool/text.hpp>
+#include <frontend/statusbar.hpp>
 #include <iostream>
 
 static PyObject*
@@ -14,15 +16,17 @@ dispwait(PyObject *self, PyObject *args)
     auto a = PyArg_ParseTuple(args,":disp_wait");
     if(a == 1){
         bool finished = false;
-        SDL_RenderPresent(Globals::renderer);
+        SDL::Present("Waiting...");
+        SDL_Delay(50);
         while(!finished){
-            SDL_RenderPresent(Globals::renderer); //this keeps the screen alive, very finnicky otherwise
+            
             SDL_Event event;
             while (SDL_PollEvent(&event)){   
                                 //771 is alphanumeric, from what i can tell
-                if((/*event.type == SDL_KEYDOWN */ event.key.type == 771) || event.type == SDL_QUIT) finished = SDL_TRUE;
+                if((event.key.type == 771) || event.type == SDL_QUIT) finished = SDL_TRUE;
             }
-            SDL_Delay(20);
+            SDL_Delay(10);
+            //SDL::Present(); //this keeps the screen alive, very finnicky otherwise
         }
     }
     return PyLong_FromLong(2);

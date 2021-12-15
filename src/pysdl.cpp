@@ -121,10 +121,14 @@ line(PyObject *self, PyObject *args)
         
     return PyLong_FromLong(2);
 }
+static int pltcount = 0;
 
 static PyObject*
 plot(PyObject *self, PyObject *args)
 {
+    pltcount++;
+    std::cout << "plot count: ";
+    std::cout << pltcount << std::endl;
     PyObject* x;
     PyObject* y;
     const char* style;
@@ -145,7 +149,7 @@ plot(PyObject *self, PyObject *args)
             SDL::Dot(map_window(xx, true), map_window(yy, false), style);
         }
     }
-        
+    //SDL_RenderPresent(Globals::renderer);
     return PyLong_FromLong(2);
 }
 
@@ -159,7 +163,7 @@ disp_text(PyObject *self, PyObject *args) //literally the same as the ti_system 
     auto a = PyArg_ParseTuple(args,"Iss",&row,&text,&align);
     if(a == 1){
         Text::Draw(0, 24*(row-1), text,align);
-        SDL_RenderPresent(Globals::renderer);
+        //SDL_RenderPresent(Globals::renderer);
 
         
     }

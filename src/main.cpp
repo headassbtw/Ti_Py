@@ -17,11 +17,13 @@
 #include <pysystem.hpp>
 
 #include <tool/text.hpp>
-
+#include <frontend/statusbar.hpp>
 const char* Globals::fontpath;
+int Globals::statusbar_height = 40;
 SDL_Color Globals::color = {0,0,0};
 SDL_Window* Globals::window;
 SDL_Renderer* Globals::renderer;
+SDL_Renderer* Globals::post_renderer;
 int Globals::screen_size_mod = 1;
 int Globals::screen_width = 320;
 int Globals::screen_height = 210;
@@ -56,14 +58,22 @@ int main(int argc, char* argv[]){
     else{
         std::cout << "could not start TTF engine" << std::endl;
     }
+    Globals::post_renderer = SDL_CreateRenderer(Globals::window, 1, SDL_RENDERER_TARGETTEXTURE);
+
+
     //SDL_CreateWindowAndRenderer(320, 210, SDL_WINDOW_VULKAN, &window, &renderer);
-    SDL_CreateWindowAndRenderer(Globals::screen_width * Globals::screen_size_mod, Globals::screen_height * Globals::screen_size_mod, SDL_WINDOW_VULKAN, &Globals::window, &Globals::renderer);
+    SDL_CreateWindowAndRenderer((Globals::screen_width * Globals::screen_size_mod), (Globals::screen_height * Globals::screen_size_mod), SDL_WINDOW_SHOWN, &Globals::window, &Globals::renderer);
     std::string pyname = argv[1];
     std::cout << "Running file ";
     std::cout << pyname << std::endl;
     
     std::string wintitle = "TiPy - " + pyname;
     SDL_SetWindowTitle(Globals::window, wintitle.c_str());
+
+
+    
+
+    
     SDL_SetRenderDrawColor(Globals::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(Globals::renderer);
     SDL_RenderPresent(Globals::renderer);
@@ -87,8 +97,11 @@ int main(int argc, char* argv[]){
 
     SDL_SetRenderDrawColor(Globals::renderer, Globals::color.r, Globals::color.g, Globals::color.b, SDL_ALPHA_OPAQUE);
     SDL_RenderPresent(Globals::renderer);
+
+    
     Import(pyname.c_str());
-    SDL_RenderPresent(Globals::renderer);
+    
+
     
     if (Py_FinalizeEx() < 0) {
         exit(120);

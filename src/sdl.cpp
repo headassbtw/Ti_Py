@@ -1,13 +1,31 @@
 #include "SDL_render.h"
+#include "SDL_video.h"
 #include <cstring>
 #include <sdl.hpp>
 #include <SDL2/SDL.h>
+#include <tool/text.hpp>
 #include <main.hpp>
+#include <frontend/statusbar.hpp>
 #include <iostream>
+
+void SDL::Present(){
+    SDL_SetWindowSize(Globals::window, Globals::screen_width*Globals::screen_size_mod, Globals::screen_height * Globals::screen_size_mod);
+    SDL_RenderPresent(Globals::renderer);
+}
+void SDL::Present(const char* message){
+    
+    SDL_SetWindowSize(Globals::window, Globals::screen_width*Globals::screen_size_mod, (Globals::screen_height * Globals::screen_size_mod) + Globals::statusbar_height);
+    StatusBar::RenderLoop();
+    SDL_SetRenderDrawColor(Globals::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    Text::Draw(0, Globals::screen_height+10, message, "center");
+    SDL_RenderPresent(Globals::renderer);
+}
+
+
 void SDL::Clear(){
     SDL_SetRenderDrawColor(Globals::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(Globals::renderer);
-    SDL_RenderPresent(Globals::renderer);
+    //SDL_RenderPresent(Globals::renderer);
 }
 void SDL::Dot(int x, int y, const char* mark){
     int r = Globals::screen_size_mod;
