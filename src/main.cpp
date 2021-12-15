@@ -13,6 +13,7 @@
 #include "SDL_video.h"
 #include <py.hpp>
 #include <pysdl.hpp>
+#include <pysystem.hpp>
 
 SDL_Window* Globals::window;
 SDL_Renderer* Globals::renderer;
@@ -57,6 +58,7 @@ int main(int argc, char* argv[]){
     SDL_RenderPresent(Globals::renderer);
     Py_SetProgramName(program);
     PyImport_AppendInittab("ti_plotlib", &py_sdl::PyInit_sdl);
+    PyImport_AppendInittab("ti_system", &py_system::PyInit_system);
     Py_Initialize();
 
     //lets you import files from the same directory
@@ -90,21 +92,7 @@ int main(int argc, char* argv[]){
         exit(120);
     }
     PyMem_RawFree(program);
-    
-    while(!Globals::done){
-        SDL_RenderPresent(Globals::renderer);
-        SDL_Event event;
-        while (SDL_PollEvent(&event))
-        {      
-            switch(event.type){
-                case SDL_QUIT:
-                    Globals::done = SDL_TRUE;
-                break;
-            }
-        }
-        SDL_Delay(20);
-    }
-    
+
     SDL_DestroyRenderer(Globals::renderer);
     SDL_DestroyWindow(Globals::window);
     SDL_Quit();

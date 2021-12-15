@@ -45,5 +45,5 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
  - [ ] if escape():break
  - [ ] disp_at(row,"text","align")
  - [ ] disp_clr()
- - [ ] disp_wait()
+ - [x] disp_wait()
  - [ ] disp_cursor()
