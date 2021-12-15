@@ -23,10 +23,10 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
  - [x] color(r,g,b)
  - [ ] scatter(xlist,ylist,"mark")
  - [ ] plot(xlist,ylist,"mark")
- - [ ] plot(x,y,"mark")
+ - [x] plot(x,y,"mark")
     - [x] x
     - [x] y
-    - [ ] "mark"
+    - [x] "mark"
  - [ ] line(x1,y1,x2,y2,"mode")
     - [x] x1
     - [x] y1

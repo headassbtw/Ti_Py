@@ -6,8 +6,9 @@
 #include <py.hpp>
 #include <pysdl.hpp>
 #include <main.hpp>
+#include <string>
 #include <tool/text.hpp>
-
+#include <sdl.hpp>
 float map_window(float value, bool axis){
     
     
@@ -91,9 +92,7 @@ cls(PyObject *self, PyObject *args)
 {
     auto a = PyArg_ParseTuple(args,":cls");
     if(a == 1){
-        SDL_SetRenderDrawColor(Globals::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-        SDL_RenderClear(Globals::renderer);
-        SDL_RenderPresent(Globals::renderer);
+        SDL::Clear();
     }
         
     return PyLong_FromLong(2);
@@ -129,16 +128,9 @@ plot(PyObject *self, PyObject *args)
     float y;
     const char* style;
     auto a = PyArg_ParseTuple(args,"ffs", &x,&y,&style);
+
     if(a == 1){
-        int r = Globals::screen_size_mod;
-        for(int i = 0; i < r; i++){
-            for(int j = 0; j < r; j++){
-                SDL_RenderDrawPoint(Globals::renderer, map_window(x, true)+i, map_window(y, false)+j);
-            }
-        }
-
-
-        
+        SDL::Dot(map_window(x, true), map_window(y, false), style);
     }
         
     return PyLong_FromLong(2);
