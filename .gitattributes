@@ -3,3 +3,6 @@ CMake_Modules/** linguist-vendored
 
 #vscode stuff because idk?
 compile_commands.json linguist-generated
+
+#the font, it's a binary but just playing it safe
+font.ttf linguist-vendored

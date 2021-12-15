@@ -35,7 +35,7 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
     - [ ] "mode"
  - [ ] lin_reg(xlist,ylist,"disp")
  - [ ] pen("size","style")
- - [ ] text_at(row,"text","align")
+ - [x] text_at(row,"text","align")
 
 ## ti_system
  - [ ] var=recall_list("name")
@@ -43,7 +43,7 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
  - [ ] var=recall_RegEQ()
  - [ ] while not escape():
  - [ ] if escape():break
- - [ ] disp_at(row,"text","align")
+ - [x] disp_at(row,"text","align")
  - [ ] disp_clr()
  - [x] disp_wait()
  - [ ] disp_cursor()

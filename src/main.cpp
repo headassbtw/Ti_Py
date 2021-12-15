@@ -10,11 +10,16 @@
 #include "SDL_render.h"
 #include "SDL_surface.h"
 #include "SDL_timer.h"
+#include "SDL_ttf.h"
 #include "SDL_video.h"
 #include <py.hpp>
 #include <pysdl.hpp>
 #include <pysystem.hpp>
 
+#include <tool/text.hpp>
+
+const char* Globals::fontpath;
+SDL_Color Globals::color = {0,0,0};
 SDL_Window* Globals::window;
 SDL_Renderer* Globals::renderer;
 int Globals::screen_size_mod = 1;
@@ -45,6 +50,12 @@ int main(int argc, char* argv[]){
         std::cout << "Fatal error: cannot decode argv[0]" << std::endl;
         exit(1);
     }
+    if(TTF_Init() == 0){
+        std::cout << "TTF engine initialized" << std::endl;
+    }
+    else{
+        std::cout << "could not start TTF engine" << std::endl;
+    }
     //SDL_CreateWindowAndRenderer(320, 210, SDL_WINDOW_VULKAN, &window, &renderer);
     SDL_CreateWindowAndRenderer(Globals::screen_width * Globals::screen_size_mod, Globals::screen_height * Globals::screen_size_mod, SDL_WINDOW_VULKAN, &Globals::window, &Globals::renderer);
     std::string pyname = argv[1];
@@ -70,10 +81,13 @@ int main(int argc, char* argv[]){
     pathcmd += "/')\n";
     PyRun_SimpleString("import sys\n");
     PyRun_SimpleString(pathcmd.c_str());
+    std::string fontp = tmp;
+    fontp+= "/font.ttf";
+    Globals::fontpath = fontp.c_str();
 
-
-
+    SDL_SetRenderDrawColor(Globals::renderer, Globals::color.r, Globals::color.g, Globals::color.b, SDL_ALPHA_OPAQUE);
     Import(pyname.c_str());
+
     /*
     std::ifstream inFile;
     inFile.open(pyname);

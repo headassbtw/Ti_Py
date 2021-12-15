@@ -1,6 +1,8 @@
 #pragma once
 #include <SDL2/SDL.h>
 struct Globals{
+    static const char* fontpath;
+    static SDL_Color color;
     static SDL_Renderer* renderer;
     static SDL_Window* window;
     static int screen_size_mod;

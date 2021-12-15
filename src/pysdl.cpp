@@ -6,7 +6,7 @@
 #include <py.hpp>
 #include <pysdl.hpp>
 #include <main.hpp>
-
+#include <tool/text.hpp>
 
 float map_window(float value, bool axis){
     
@@ -34,6 +34,7 @@ color(PyObject *self, PyObject *args)
 
     auto a = PyArg_ParseTuple(args,"fff", &r,&g,&b);
     if(a == 1){
+        Globals::color = {(Uint8)r,(Uint8)g,(Uint8)b};
         SDL_SetRenderDrawColor(Globals::renderer, r, g, b, SDL_ALPHA_OPAQUE);
     }
     return PyLong_FromLong(1);
@@ -143,7 +144,22 @@ plot(PyObject *self, PyObject *args)
     return PyLong_FromLong(2);
 }
 
+static PyObject*
+disp_text(PyObject *self, PyObject *args) //literally the same as the ti_system one, wtf
+{
+    int row;
+    const char* text;
+    const char* align;
 
+    auto a = PyArg_ParseTuple(args,"Iss",&row,&text,&align);
+    if(a == 1){
+        Text::Draw(0, 24*(row-1), text,align);
+        SDL_RenderPresent(Globals::renderer);
+
+        
+    }
+    return PyLong_FromLong(2);
+}
 
 
 
@@ -161,6 +177,8 @@ static PyMethodDef SdlMethods[] = {
      "Draws a grid"},
      {"window", window, METH_VARARGS,
      "Sets the window size [BETA]"},
+     {"text_at", disp_text, METH_VARARGS,
+     "draws text"},
     {NULL, NULL, 1, NULL}
 };
 
