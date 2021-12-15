@@ -22,21 +22,18 @@ void SDL::Dot(int x, int y, const char* mark){
         }
     }
     if(strcmp(mark, "+") == 0){ //plus
-    std::cout << "plus" << std::endl;
         for(int i = 0; i < 7; i++){
             SDL_RenderDrawPoint(Globals::renderer, x, (y-3)+i);
             SDL_RenderDrawPoint(Globals::renderer, (x-3)+i, y);
         }
     }
     if(strcmp(mark, "x") == 0){ //cross
-        std::cout << "cross" << std::endl;
         for(int i = 0; i < 7; i++){
             SDL_RenderDrawPoint(Globals::renderer, (x-3)+i, (y-3)+i);
             SDL_RenderDrawPoint(Globals::renderer, (x-3)+i, (y+3)-i);
         }
     }
     if(strcmp(mark, ".") == 0){ //pixel
-    std::cout << "pixel" << std::endl;
         for(int i = 0; i < r; i++){
             for(int j = 0; j < r; j++){
                 SDL_RenderDrawPoint(Globals::renderer, x+i, y+j);

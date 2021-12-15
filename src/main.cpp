@@ -86,20 +86,8 @@ int main(int argc, char* argv[]){
     Globals::fontpath = fontp.c_str();
 
     SDL_SetRenderDrawColor(Globals::renderer, Globals::color.r, Globals::color.g, Globals::color.b, SDL_ALPHA_OPAQUE);
+    SDL_RenderPresent(Globals::renderer);
     Import(pyname.c_str());
-
-    /*
-    std::ifstream inFile;
-    inFile.open(pyname);
-    std::string str;
-    std::string file_contents;
-    while (std::getline(inFile, str))
-    {
-        file_contents += str;
-        file_contents.push_back('\n');
-    }  
-
-    PyRun_SimpleString(file_contents.c_str());*/
     SDL_RenderPresent(Globals::renderer);
     
     if (Py_FinalizeEx() < 0) {

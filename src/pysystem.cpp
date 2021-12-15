@@ -6,7 +6,7 @@
 #include <SDL2/SDL.h>
 #include <string>
 #include <tool/text.hpp>
-
+#include <iostream>
 
 static PyObject*
 dispwait(PyObject *self, PyObject *args)
@@ -19,7 +19,8 @@ dispwait(PyObject *self, PyObject *args)
             SDL_RenderPresent(Globals::renderer); //this keeps the screen alive, very finnicky otherwise
             SDL_Event event;
             while (SDL_PollEvent(&event)){   
-                if(event.type == SDL_KEYDOWN || event.type == SDL_QUIT) finished = SDL_TRUE;
+                                //771 is alphanumeric, from what i can tell
+                if((/*event.type == SDL_KEYDOWN */ event.key.type == 771) || event.type == SDL_QUIT) finished = SDL_TRUE;
             }
             SDL_Delay(20);
         }

@@ -22,7 +22,7 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
  - [ ] show_plot()
  - [x] color(r,g,b)
  - [ ] scatter(xlist,ylist,"mark")
- - [ ] plot(xlist,ylist,"mark")
+ - [x] plot(xlist,ylist,"mark")
  - [x] plot(x,y,"mark")
     - [x] x
     - [x] y

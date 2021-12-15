@@ -1,6 +1,7 @@
 #include "SDL_pixels.h"
 #include "SDL_render.h"
 #include <Python.h>
+#include <cstring>
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <py.hpp>
@@ -124,13 +125,25 @@ line(PyObject *self, PyObject *args)
 static PyObject*
 plot(PyObject *self, PyObject *args)
 {
-    float x;
-    float y;
+    PyObject* x;
+    PyObject* y;
     const char* style;
-    auto a = PyArg_ParseTuple(args,"ffs", &x,&y,&style);
-
+    auto a = PyArg_ParseTuple(args,"OOs", &x,&y,&style);
+    
     if(a == 1){
-        SDL::Dot(map_window(x, true), map_window(y, false), style);
+        if(strcmp(x->ob_type->tp_name, "list") == 0 && strcmp(y->ob_type->tp_name, "list") == 0){
+            int listsize = (int)PyList_GET_SIZE(x);
+            for(int i = 0; i < listsize; i++){
+                int xx = (int)PyLong_AsLong(PyList_GetItem(x, i));
+                int yy = (int)PyLong_AsLong(PyList_GetItem(y, i));
+                SDL::Dot(map_window(xx, true), map_window(yy, false), style);
+            }
+        }
+        else{
+            int xx = (int)PyLong_AsLong(x);
+            int yy = (int)PyLong_AsLong(y);
+            SDL::Dot(map_window(xx, true), map_window(yy, false), style);
+        }
     }
         
     return PyLong_FromLong(2);
