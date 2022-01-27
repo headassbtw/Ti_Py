@@ -1,5 +1,7 @@
 #build stuff
 /build
-
+#cache stuff
+/.cache
+/__pycache__
 #just in case
 *.o
