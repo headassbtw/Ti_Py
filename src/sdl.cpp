@@ -1,4 +1,5 @@
 #include "SDL_render.h"
+#include "SDL_timer.h"
 #include "SDL_video.h"
 #include <cstring>
 #include <sdl.hpp>
@@ -58,6 +59,10 @@ void SDL::Dot(float x, float y, const char* mark){
                 SDL_RenderDrawPoint(Globals::renderer, x+i, y+j);
             }
         }
+    }
+    if(Globals::slow){
+        SDL_RenderPresent(Globals::renderer);
+        SDL_Delay(1);
     }
     
 }

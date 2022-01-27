@@ -2,6 +2,7 @@
 #include "SDL_render.h"
 #include "SDL_ttf.h"
 #include <pysystem.hpp>
+#include <pyvars.hpp>
 #include <main.hpp>
 #include <SDL2/SDL.h>
 #include <sdl.hpp>
@@ -57,6 +58,10 @@ static PyMethodDef SysMethods[] = {
      "waits for key input"},
      {"disp_at", disp_text, METH_VARARGS,
      "displays text"},
+     {"recall_list", py_vars::recall_ls, METH_VARARGS,
+     "recalls a list from constant vars"},
+     {"store_list", py_vars::store_ls, METH_VARARGS,
+     "stores a list to constant vars"},
     {NULL, NULL, 1, NULL}
 };
 

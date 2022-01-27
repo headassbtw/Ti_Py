@@ -1,0 +1,3 @@
+[submodule "extern/RSJp-cpp"]
+	path = extern/RSJp-cpp
+	url = https://github.com/subh83/RSJp-cpp

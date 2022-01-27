@@ -38,8 +38,8 @@ Mostly just an SDL wrapper for the `ti_plotlib` library
  - [x] text_at(row,"text","align")
 
 ## ti_system
- - [ ] var=recall_list("name")
- - [ ] store_list("name",var)
+ - [x] var=recall_list("name")
+ - [x] store_list("name",var)
  - [ ] var=recall_RegEQ()
  - [ ] while not escape():
  - [ ] if escape():break

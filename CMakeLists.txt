@@ -16,14 +16,13 @@ find_package(Python3 COMPONENTS Interpreter Development)
 find_package(SDL2 REQUIRED)
 find_package(SDL2TTF REQUIRED)
 include_directories(include)
+include_directories(extern/RSJp-cpp)
 include_directories(${Python3_INCLUDE_DIRS})
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${SDL2TTF_INCLUDE_DIRS})
 
-file(GLOB SRC
+file(GLOB_RECURSE SRC CONFIGURE_DEPENDS
      "src/*.cpp"
-     "src/tool/*.cpp"
-     "src/frontend/*.cpp"
      "include/*.hpp"
 )
 

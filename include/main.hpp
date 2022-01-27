@@ -15,4 +15,5 @@ struct Globals{
     static float ymin;
     static float ymax;
     static bool done;
+    static bool slow;
 };

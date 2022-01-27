@@ -15,7 +15,8 @@
 #include <py.hpp>
 #include <pysdl.hpp>
 #include <pysystem.hpp>
-
+#include <pyvars.hpp>
+#include <algorithm>
 #include <tool/text.hpp>
 #include <frontend/statusbar.hpp>
 const char* Globals::fontpath;
@@ -32,9 +33,14 @@ float Globals::xmax = 10;
 float Globals::ymin = -6.56;
 float Globals::ymax = 6.56;
 bool Globals::done = false;
+bool Globals::slow = false;
 
 
 
+bool cmdOptionExists(char** begin, char** end, const std::string& option)
+{
+    return std::find(begin, end, option) != end;
+}
 
 
 int main(int argc, char* argv[]){
@@ -52,6 +58,11 @@ int main(int argc, char* argv[]){
         std::cout << "Fatal error: cannot decode argv[0]" << std::endl;
         exit(1);
     }
+    if(cmdOptionExists(argv, argv+argc, "--slow")){
+        Globals::slow = true;
+    }
+    
+
     if(TTF_Init() == 0){
         std::cout << "TTF engine initialized" << std::endl;
     }
